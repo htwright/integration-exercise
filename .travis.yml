@@ -1,2 +1,9 @@
 language: node_js,
 node_js: node
+deploy:
+  provider: heroku
+  api_key: 
+    secure: YKgNy2HHJ0kdbglQTOhHLEjWiHqVoxZFdSAieZQ36Ub+ODrbsWn3Z2AWIiTsR86JU5VE29B8sGqETxM46Mpv6YxHyI+Kf+aHH5mlGDJ9kGhNJp7YoWu1+Wvy9IFMFzq7MjNBTo2zqNzsLmJ1knhWXpdvrTfFa+1i9e7T8HbSfa763wEsJsLps6LK4yNuVZKgVNaEK+oNy7ZnkWQdacC9l/QRPkNJqlSTCqWrAD9ARU3YjAu/l4vhtyccflbgUMsnfI4cG16/zvFAJ3UFPOkoVZjcf854I3My3NxBkxDbocyzPPaJ2Bd1aX3Wdm8tCeoZ/Nq1YxFWi2RBMcXccSRYuZPo5RaZLnJc1/4IDzsgd78x0nEDgSxu2S0Lgv8s7KNI+kfN54RqAT56WxxRcrfmWcRGweiiyfkVftE2DgQRB7bvfvF38oyDx6mkaRZpbbZ+T44nxPLWLybsB+dT9DATwvjL9QkR+jqEQMExNTIba4TCCX4WfttdV9h0R+aoQ5XkSi7rIxAkv1d64EYa25ttoCZOuU24oaTgXv8Plxp+rC5zkilVbw6EkiUtTXg4kpiYp9Kq1xTCLz1FOVlHbYwcRQZvZQpW8C2DP+jJvDTp9Rn7mfCN2hxRFoAstoRgawOwLbJPEJzXct9WEaARkQrpKbmhmo8IFY0Y3Ui2cr31h/M=
+  app: rocky-earth-62383
+  on: 
+    repo: htwright/integration-exercise
