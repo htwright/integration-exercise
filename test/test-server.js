@@ -141,4 +141,67 @@ describe('Shopping List', function() {
         res.should.have.status(204);
       });
   });
+  it('should return items on GET', function(){
+    return chai.request(app).get('/recipes')
+    .then(function(res){
+      console.log(res.body);
+      res.should.be.json;
+      const expectedKeys = ['id', 'name', 'ingredients'];
+      res.body.forEach(function(item) {
+        item.ingredients.should.be.a('array');
+        item.ingredients.length.should.gt(0);
+        item.name.should.be.a('string');
+        item.should.be.a('object');
+        item.should.include.keys(expectedKeys);
+      });
+
+    })
+  })
+  it('should add an item on POST', function(){
+    const testItem = {name:'bread', ingredients:['flour', 'water', 'salt']};
+    return chai.request(app).post('/recipes').send(testItem).then(function(res){
+      res.should.be.json;
+      res.should.have.status(201);
+      res.body.should.include.keys('name', 'ingredients');
+      res.body.name.should.equal(testItem.name);
+      res.body.ingredients.length.should.gt(0);
+      res.body.id.should.not.be.null;
+    })
+  })
+  it('should update items on PUT', function(){
+    const updateTest = {name :'testbread', ingredients: ['testWater', 'syntacticSugar', 'syntaxSalt']};
+    return chai.request(app).get('/recipes').then(function(res){
+      updateTest.id = res.body[0].id;
+      return chai.request(app).put(`/recipes/${updateTest.id}`).send(updateTest)
+    })
+      .then(function(res){
+        res.should.be.json;
+        res.should.have.status(200);
+        res.body.name.should.equal(updateTest.name);
+      })
+    })
+    it('should delete items on DELTE', function(){
+      return chai.request(app).get('/recipes').then(function(res){
+        return chai.request(app)
+          .delete(`/recipes/${res.body[0].id}`)
+      })
+      .then(function(res){
+        res.should.have.status(204);
+      })
+    })
+
 });
+// it('should delete items on DELETE', function() {
+//   return chai.request(app)
+//     // first have to get so we have an `id` of item
+//     // to delete
+//     .get('/shopping-list')
+//     .then(function(res) {
+//       return chai.request(app)
+//         .delete(`/shopping-list/${res.body[0].id}`);
+//     })
+//     .then(function(res) {
+//       res.should.have.status(204);
+//     });
+// });
+//
