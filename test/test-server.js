@@ -180,15 +180,15 @@ describe('Shopping List', function() {
         res.body.name.should.equal(updateTest.name);
       })
     })
-    it('should delete items on DELTE', function(){
-      return chai.request(app).get('/recipes').then(function(res){
-        return chai.request(app)
-          .delete(`/recipes/${res.body[0].id}`)
-      })
-      .then(function(res){
-        res.should.have.status(204);
-      })
+  it('should delete items on DELTE', function(){
+    return chai.request(app).get('/recipes').then(function(res){
+      return chai.request(app)
+        .delete(`/recipes/${res.body[0].id}`)
     })
+    .then(function(res){
+      res.should.have.status(204);
+    })
+  })
 
 });
 // it('should delete items on DELETE', function() {
